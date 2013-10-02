@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="../">{% trans 'Home' %}</a> &rsaquo; Connexion</div>{% endblock %}
+
+{% block content %}
+<form method="post" action="."><!---{% csrf_token %}--->
+  {{ form.as_p }}
+
+  <input type="submit" value="{% trans 'Log in' %}" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+<br>
+<!---<p>Forgot password? <a href="{% url auth_password_reset %}">Reset it</a>!</p>--->
+{% endblock %}

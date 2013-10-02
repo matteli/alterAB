@@ -1,0 +1,5 @@
+bleu foncé #396b9f
+vert #7dc42c
+gris clair : #e2e2e2
+gris moyen : #222222
+gris foncé : #111111

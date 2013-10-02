@@ -1,0 +1,32 @@
+tr.row1validTrue{
+ background:#e2e2e2;
+} 
+tr.row2validTrue{
+ background:white;
+} 
+tr.row1validFalse{
+ background:#FF6464;
+} 
+tr.row2validFalse{
+ background:#FF6464;
+} 
+
+tr.titre{
+ background:#396b9f;
+ color:white;
+}
+
+a.colornoir{
+ color:#2b2b2b;
+}
+a.colornoir:hover{
+ color:#707070;
+}
+
+div#toolsbar li#liste_activite{
+ background-color:white;
+ border-radius:10px 10px 0px 0px; 
+}
+div#toolsbar li#liste_activite a{
+ color:black;
+}

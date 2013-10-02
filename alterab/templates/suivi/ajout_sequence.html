@@ -1,0 +1,36 @@
+{% extends "suivi/suivi.html" %}
+{% block jquery %}
+// prepare the form when the DOM is ready 
+$(document).ready(function() { 
+    $('#button_ajouter_comp').click(function() {
+        $("#id_action").attr("value","select");
+        $("form").submit();
+    });
+    $("#id_submit").click(function() { 
+        $("#id_action").attr("value","submit");
+        return true; 
+    });
+});
+{% block content %}
+<form method="POST" action="{% url sequence_ufa_ajout %}"><!---{% csrf_token %}--->
+    <div class="sequence_ufa_form">
+    {% for field in t_activite_ufa_form %}
+        {% if field.is_hidden %}
+            <p> {{ field }} </p>
+        {% else %}
+            <p>{{ field.label_tag }}:{{ field.errors }}</p>
+            <p> {{ field }} </p>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <select id="competence_select">
+        {% for comp in competence %}
+            <option value={{comp}}>{{comp}}</option>
+        {% endfor %}
+    </select>
+    <button type="button" id="button_ajouter_comp">Ajouter</button>
+    <br/>
+    <input type="submit" value="Valider" id="id_submit"/>
+</form>
+{% endblock %}
+

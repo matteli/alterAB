@@ -1,0 +1,10 @@
+div#toolsbar li#ajout_activite_entreprise,li#proposition_activite_entreprise{
+ background-color:white;
+ border-radius:10px 10px 0px 0px; 
+}
+div#toolsbar li#ajout_activite_entreprise a{
+ color:black;
+}
+div#toolsbar li#proposition_activite_entreprise a{
+ color:black;
+}

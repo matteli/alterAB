@@ -1,0 +1,93 @@
+{% extends "suivi/suivi.html" %}
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/suivi.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/suivi_ajout.css" />
+{% endblock %}
+{% block jquery %}
+// prepare the form when the DOM is ready 
+$(document).ready(function() { 
+    $('input[class="class_observable"]:not([checked])').parent().next().toggle();
+
+    
+    $('#id_tache').change(function() {
+        $("#id_action").attr("value","select");
+        $("form").submit();
+    });
+    $("#id_submit").click(function() { 
+        $("#id_action").attr("value","submit");
+        return true; 
+    });
+    $('.class_observable').click(function() {
+            $(this).parent().next().toggle('slow');
+            return true;
+        });
+        
+    // Datepicker
+    $('#id_date').datepicker({
+        inline: true, 
+        dateFormat: 'dd/mm/yy',
+        autoSize: true
+    });
+});
+
+/* French initialisation for the jQuery UI date picker plugin. */
+/* Written by Keith Wood (kbwood{at}iinet.com.au) and Stéphane Nahmani (sholby@sholby.net). */
+jQuery(function($){
+	$.datepicker.regional['fr'] = {
+		closeText: 'Fermer',
+		prevText: '&#x3c;Préc',
+		nextText: 'Suiv&#x3e;',
+		currentText: 'Courant',
+		monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin',
+		'Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+		monthNamesShort: ['Jan','Fév','Mar','Avr','Mai','Jun',
+		'Jul','Aoû','Sep','Oct','Nov','Déc'],
+		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+		dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+		dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''};
+	$.datepicker.setDefaults($.datepicker.regional['fr']);
+});
+{% endblock %}
+{% block content %}
+<form method="POST" action="{% url activite_entreprise_ajout %}"><!--{% csrf_token %}-->
+    <div class="activite_entreprise_form">
+    {% for field in activite_entreprise_form %}
+        {% if field.is_hidden %}
+            <p> {{ field }} </p>
+        {% else %}
+            <p>{{ field.label_tag }}:{{ field.errors }}</p>
+            <p> {{ field }} </p>
+        {% endif %}
+    {% endfor %}
+    </div>
+    {{ competence_dans_activite_formset.management_form }}
+    {% for form in competence_dans_activite_formset %}
+        <fieldset>
+        <legend>{{form.observable}} {{form.titre}}</legend>
+        
+        <div class="divcompetence">
+        <p>{{form.donnees.label_tag}}:{{form.donnees.errors}}</p>
+        <p>{{form.donnees}}</p>
+        <p>{{form.resultats.label_tag}}:{{form.resultats.errors}}</p>
+        <p>{{form.resultats}}</p>
+        <p>{{form.pratique.label_tag}}:{{form.pratique.errors}}</p>
+        <p>{{form.pratique}}</p>
+        <p>{{form.resultat.label_tag}}:{{form.resultat.errors}}</p>
+        <p>{{form.resultat}}</p>
+        {% for field in form %}
+        {% if field.is_hidden %}
+            <p> {{ field }} </p>
+        {% endif %}
+        {% endfor %}
+        </div>
+        </fieldset>
+    {% endfor %}
+    <input type="submit" value={{ activite_entreprise_form.nom_bouton }} id="id_submit"/>
+</form>
+{% endblock %}

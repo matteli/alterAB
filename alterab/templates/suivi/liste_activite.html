@@ -1,0 +1,28 @@
+{% extends "suivi/suivi.html" %}
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/suivi.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/suivi_liste.css" />
+{% endblock %}
+{% block content %}
+<table id="liste">
+  <tr class="titre">
+    <th>Titre de l'activité</th>
+    <th>Apprenti</th>
+    <th>Début d'activité</th>
+  </tr>
+{% for com in activite_entreprise %}
+  <tr class="{% cycle 'row1' 'row2' %}valid{{com.validation_tuteur}}">
+    {% if com.validation_tuteur %}
+        <td><a class="colornoir" href="/activite/entreprise/consultation/{{com.pk}}/">{{com.tache.nom}}</a></td>
+    {% else %}
+        <td><a class="colornoir" href="/activite/entreprise/modification/{{com.pk}}/">{{com.tache.nom}}</a></td>
+    {% endif %}
+    <td>{{com.apprenant}}</td>
+    <td>{{com.date}}</td>
+  </tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}
+

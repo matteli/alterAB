@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/suivi.css" />
+{% endblock %}
+
+
+{% block toolsbar %}
+<div id="toolsbar">
+    <ul>
+        {% if perms.suivi.can_see_all_activite_entreprise or perms.suivi.can_see_owned_activite_entreprise or perms.suivi.can_see_all_activite_ufa or perms.suivi.can_see_owned_activite_ufa %}
+        <li id="liste_activite">
+            <a href="/activite/liste/">Lister les activités</a>
+        </li>
+        {% endif %}
+        {% if perms.suivi.add_activite_entreprise %}
+        <li id="ajout_activite_entreprise">
+            <a href="/activite/entreprise/ajout/">Ajouter une activité</a>
+        </li>
+        {% endif %}
+        {% if perms.suivi.can_propose_activite_entreprise %}
+        <li id="proposition_activite_entreprise">
+            <a href="/activite/entreprise/ajout/">Proposer une activité</a>
+        </li>
+        {% endif %}
+        {% if perms.suivi.add_activite_ufa %}
+        <li id="ajout_activite_ufa">
+            <a href="/activite/ufa/ajout/">Ajouter une activité</a>
+        </li>
+        {% endif %}
+        {% if perms.suivi.can_see_all_t_activite_ufa or perms.suivi.can_see_owned_t_activite_ufa %}
+        <li id="liste_sequence_ufa">
+            <a href="/activite/sequence/liste/">Lister les séquences</a>
+        </li>
+        {% endif %}
+        {% if perms.suivi.add_t_activite_ufa %}
+        <li id="ajout_sequence_ufa">
+            <a href="/activite/sequence/ajout/">Ajouter une séquence</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock%}

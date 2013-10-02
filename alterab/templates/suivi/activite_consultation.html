@@ -1,0 +1,30 @@
+{% extends "suivi/suivi.html" %}
+
+{% block content %}
+    {% for activite in object_list %}
+    <h2>Activité réalisée par 
+    <!---{% filter force_escape %}{% firstof apprenant.utilisateur_extend.user.first_name apprenant.utilisateur_extend.user.username %}{% endfilter %}--->    
+    {% filter force_escape %}
+    {% if apprenant.utilisateur_extend.user.first_name %}
+    {{ apprenant.utilisateur_extend.user.first_name }} {{ apprenant.utilisateur_extend.user.last_name }}
+    {% else %}{% if user.username %}
+    {{ apprenant.utilisateur_extend.user.username }}
+    {% endif %}{% endif %}
+    {% endfilter %}</h2>
+    <p><strong>Tâche réalisé : </strong> {{activite.tache}}</p>
+    <p><strong>Date du début de l'activité : </strong>{{activite.date}}</p>
+    <p><strong>Description : </strong>{{activite.mise_en_situation}}</p>
+    <h3>Compétences observables pendant l'activité :</h3>
+    {% for comp in competence %}
+        {% if comp.observable %}
+            <fieldset>
+                <legend>{{ comp.competence}}</legend>
+                <p><strong>Données utilisées : </strong> {{comp.donnees}}</p>
+                <p><strong>Type de pratique : </strong>{{comp.get_pratique_display}}</p>
+                <p><strong>Réussite : </strong>{{comp.get_resultat_display}}</p>
+            </fieldset>
+        {% endif %}
+    {% endfor %}
+    <p><strong>Commentaires : </strong>{{activite.commentaire_tuteur}}</p>
+    {% endfor %}
+{% endblock %}

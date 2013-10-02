@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/textes.css" />
+{% endblock %}
+{% block toolsbar %}
+<div id="toolsbar">
+    <ul>
+        <li id="droits_obligations">
+            <a href="/textes/droits_obligations/">Droits et obligations de l'apprenti</a>
+        </li>
+        <li id="mission_tuteur_ufa">
+            <a href="/textes/mission_tuteur_ufa/">Mission du tuteur pédagogique</a>
+        </li>
+        <li id="mission_tuteur_entreprise">
+            <a href="/textes/mission_tuteur_entreprise/">Mission du maître d'apprentissage</a>
+        </li>
+        <li id="referentiel">
+            <a href="/textes/referentiel/">Référentiel</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+{% block content %}
+<p>Cette partie recense différents textes réglementaires.</p>
+{% endblock %}
+

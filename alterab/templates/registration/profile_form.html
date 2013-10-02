@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<p class="label"></p>
+<div id="contentwell">
+
+<div class="entry">
+
+<h1>Edit Profile</h1>
+
+<p>Want to edit your profile? Look no further!</p>
+
+{% if form.has_errors %}
+<h2 class="form_error">Please correct the following error{{ form.error_dict|pluralize }}:</h2>
+{% endif %}
+
+<form action="" method="post">
+
+<table border="0" id="formTable" cellpadding="6" cellspacing="6">
+<tr>
+    <td align="right" valign="top"><label for="id_form.first_name"><nobr>First Name:</nobr></label></td>
+    <td valign="top">{{ form.first_name }}</td>
+</tr>
+{% if form.first_name.errors %}
+<tr>
+    <td>&nbsp;</td>
+    <td valign="top"><span class="error">{{ form.first_name.html_error_list }}</span></td>
+</tr>
+{% endif %}
+<tr>
+    <td align="right" valign="top"><label for="id_form.last_name"><nobr>Last Name:</nobr></label></td>
+    <td valign="top">{{ form.last_name }}</td>
+</tr>
+{% if form.last_name.errors %}
+<tr>
+    <td>&nbsp;</td>
+    <td valign="top"><span class="error">{{ form.last_name.html_error_list }}</span></td>
+</tr>
+{% endif %}
+<tr>
+    <td align="right" valign="top"><label for="id_form.address">Address:</label></td>
+    <td valign="top">{{ form.address }}</td>
+</tr>
+{% if form.address.errors %}
+<tr>
+    <td>&nbsp;</td>
+    <td valign="top"><span class="error">{{ form.address.html_error_list }}</span></td>
+</tr>
+{% endif %}
+<tr>
+    <td align="right" valign="top"><label for="id_form.zip_code">Zip Code:</label></td>
+    <td valign="top">{{ form.zip_code }}</td>
+</tr>
+{% if form.zip_code.errors %}
+<tr>
+    <td>&nbsp;</td>
+    <td valign="top"><span class="error">{{ form.zip_code.html_error_list }}</span></td>
+</tr>
+{% endif %}
+<tr>
+    <td align="right" valign="top"><label for="id_form.gender">Gender:</label></td>
+    <td valign="top">{{ form.gender }}</td>
+</tr>
+{% if form.gender.errors %}
+<tr>
+    <td>&nbsp;</td>
+    <td valign="top"><span class="error">{{ form.gender.html_error_list }}</span></td>
+</tr>
+{% endif %}
+<tr>
+    <td align="right" valign="top"><label for="id_form.birth_year">Birth Year:</label></td>
+    <td valign="top">{{ form.birth_year }}</td>
+</tr>
+{% if form.birth_year.errors %}
+<tr>
+    <td>&nbsp;</td>
+    <td valign="top"><span class="error">{{ form.birth_year.html_error_list }}</span></td>
+</tr>
+{% endif %}
+<tr>
+  <td align="right" valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input type="submit" class="smallbutton" value="Update My Profile" /></td>
+</tr>
+</table>
+
+</form>
+
+</div><!-- /entry -->
+</div>
+{% endblock %}

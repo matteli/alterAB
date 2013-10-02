@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/accueil.css" />
+{% endblock %}
+{% block content %}
+<h2> Bienvenue sur le site de liaison entre les entreprises et la section STS aéronautique du lycée Aristide Briand de Saint Nazaire.</h2>
+{% if user.is_authenticated %}
+<p>Ce site est le support permettant à l'apprenti, l'entreprise et l'UFA de communiquer.</p>
+<p>Il permet de connaitre les dates d'apprentissage, de présenter les textes réglementaire et d'inscrire les différentes activités réalisées par l'apprenti que ce soit dans son entreprise ou dans son UFA.</p>
+{% else %}
+    <p>Pour parcourir ce site, vous devez vous <a href="{{ login_url }}">identifier</a>.</p>
+    <p>Si vous n'avez pas d'identifiant et que vous êtes tuteur d'apprentis ou apprentis de la section STS aéronautique du Lycée Aristide Briand de Saint Nazaire, contactez le responsable de cette formation au 0240538888.</p>
+{% endif %}
+
+{% endblock %}

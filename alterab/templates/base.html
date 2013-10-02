@@ -1,0 +1,102 @@
+{% load url from future %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE|default:"en-us" }}" xml:lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base_suivi.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" />
+{% block extrastyle %}{% endblock %}
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+{% block extrahead %}{% endblock %}
+<script type="text/javascript">{% block jquery %}{% endblock %}</script>
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+
+<!-- Container -->
+<div id="container">
+
+    {% if not is_popup %}
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        {% block branding %}<h1 id="site-name">AlterAB</h1>{% endblock %}
+        </div>
+        <div id="user-tools">
+            {% if user.is_authenticated %}
+                {% trans 'Welcome,' %}
+                <!--<strong>{% filter force_escape %}{% firstof user.first_name user.username%}{% endfilter %}</strong>. -->
+                <strong>{% filter force_escape %}
+                {% if user.first_name %}
+                {{ user.first_name }} {{ user.last_name }}
+                {% else %}{% if user.username %}
+                {{ user.username }}
+                {% endif %}{% endif %}
+                {% endfilter %}</strong>.
+                {% url 'auth_password_change' as password_change_url %}
+                <a href="{{ password_change_url }}">
+                {% trans 'Change password' %}</a> /
+                {% url 'auth_logout' as logout_url %}
+                <a href="{{ logout_url }}">
+                {% trans 'Log out' %}</a>
+            {% else %}
+                {% url 'auth_login' as login_url %}
+                <a href="{{ login_url }}">
+                Connexion</a>
+            {% endif %}
+        </div>
+    </div>
+    <!-- END Header -->
+    <div id="menu1">
+        <ul>
+            <li>
+                <a id="accueil" href="/">Accueil</a>
+            </li>
+            <li>
+                <a id="calendrier" href="/calendrier/">Calendrier</a>
+            </li>
+            <li>
+                <a id="activite" href="/activite/liste/">Activités</a>
+            </li>
+            <li>
+                <a id="textes" href="/textes/">Textes</a>
+            </li>
+        </ul>
+    </div>
+    
+    {% block toolsbar %}
+    
+    {% endblock%}
+
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messagelist">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Content -->
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block pretitle %}{% endblock %}
+        {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+        {% block content %}
+        {% block object-tools %}{% endblock %}
+        {{ content }}
+        {% endblock %}
+        {% block sidebar %}{% endblock %}
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>

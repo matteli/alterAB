@@ -1,0 +1,20 @@
+{% extends "base_generic" %}
+
+{% block title %}User profile: {{ profile.username }}{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+{% endif %}
+
+<h1>User profile: {{ profile.username }}</h1>
+
+{% if profile.first_name %}<p><strong>Name:</strong> {{ profile.first_name }} {{ profile.last_name }}</p>{% endif %}
+
+<p><strong>Joined:</strong> {{ profile.date_joined|date:"N j, Y" }}</p>
+<p><strong>Comments posted:</strong> {{ commentcount }} {% if commentcount %}(<a href="comments/">view all</a>){% endif %}</p>
+
+<p><a href="contact/">Contact {{ profile.username }}</a> (log-in required)</p>
+
+{% endblock %}

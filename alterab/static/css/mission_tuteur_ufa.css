@@ -1,0 +1,7 @@
+div#toolsbar li#mission_tuteur_ufa{
+ background-color:white;
+ border-radius:10px 10px 0px 0px; 
+}
+div#toolsbar li#mission_tuteur_ufa a{
+ color:black;
+}

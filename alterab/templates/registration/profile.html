@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Your account: {{ user.username }}{% endblock %}
+
+{% block content %}
+
+<div id="bodycontent">
+<div class="entry">
+
+<h1>Your account: {{ user.username }}</h1>
+
+<div style="margin-top: 10px; margin-left: 2px;">
+<p><strong>You're logged in.</strong> Here's where you can edit your account settings.</p>
+</div>
+
+<ul class="arrow_ul" style="margin-left: 25px;">
+	<!-- <li><a href="/comptes/profile/edit/">Edit your profile</a></li> -->
+	<li><a href="/comptes/password_change/">Change your password</a></li>
+</ul>
+
+<p>Note that you'll <strong>automatically be logged out</strong> when you close your browser, or you can <a href="/accounts/logout/">log out manually</a>.</p>
+
+</div><!-- /entry -->
+</div><!-- /bodycontent -->
+
+{% endblock %}
