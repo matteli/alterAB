@@ -141,7 +141,7 @@ class Activite_entreprise(models.Model):
     tache = models.ForeignKey(Tache, verbose_name=u"Tâche réalisée par l'apprenti")
     description = models.TextField(verbose_name=u"Description générale de l'activité",max_length=1000)
     date = models.DateField(verbose_name=u"Date de début de l'activité")
-    commentaire_tuteur = models.TextField(verbose_name=u"Commentaires sur la conduite de l'activité",max_length=1000)
+    commentaire_tuteur = models.TextField(verbose_name=u"Commentaire sur la conduite de l'activité",max_length=1000)
     validation_tuteur = models.BooleanField(default=False)
     derniere_modification = models.DateField(auto_now=True)
     class Meta:
