@@ -142,7 +142,7 @@ class Activite_entreprise(models.Model):
     description = models.TextField(verbose_name=u"Description générale de l'activité",max_length=1000)
     date = models.DateField(verbose_name=u"Date de début de l'activité")
     commentaire_tuteur = models.TextField(verbose_name=u"Commentaires sur la conduite de l'activité",max_length=1000)
-    validation_tuteur = models.BooleanField(default='false')
+    validation_tuteur = models.BooleanField(default=False)
     derniere_modification = models.DateField(auto_now=True)
     class Meta:
         permissions = (
@@ -165,7 +165,7 @@ class Competence_dans_activite(models.Model):
         (1, u'A peu près'),
         (2, u'Oui')
     )
-    observable = models.BooleanField(default='true')
+    observable = models.BooleanField(default=False)
     competence = models.ForeignKey(Competence)
     activite_entreprise = models.ForeignKey(Activite_entreprise)
     donnees = models.TextField(verbose_name=u'Données pour réaliser la tâche (documents, logiciel...)')
